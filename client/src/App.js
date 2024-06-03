@@ -1,50 +1,45 @@
  import React from 'react';
-// import './App.css';
-// import ReactDOM from 'react-dom'
-// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-// import { Switch } from 'react-router-dom';
+ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import EmployeeForm from './components/SignUp';
 
-// import Home from './components/pages/Home';
-// import About from './components/pages/About';
-// import Help from './components/pages/help';
-// import Navbar from './components/inc/navbar';
-// import Contact from './components/pages/contact';
+
+
 import Header from './components/shared/Header';
 import Sidebar from './components/shared/Sidebar';
 import MainContent from '././components/shared/MainContent'
-// function App() {
-//   return (
-//   //   <Router>
-//   //   <div>
-//   //     <Navbar />
-//   //     <Routes>
-//   //       <Route exact path="/" element={<Home />} />
-//   //       <Route path="/about" element={<About />} />
-//   //       <Route path="/help" element={<Help />} />
-//   //       <Route path="/contact" element={<Contact />} />
-//   //     </Routes>
-//   //   </div>
-//   // </Router>
+import AdiminSidebar from './components/shared/SidebarAdmin';
+import LoginPage from './components/LoginPage';
+import SignUp from './components/SignUp';
+import Customer from './components/shared/Customer';
+import Layout from './components/shared/Layout';
+import Home from './components/pages/Home';
+import AdminLayout from './components/shared/LayoutAdmin';
+function App() {
+  return (
+    <Router>
+    <div>
+      <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route index element={<Home/>}></Route>
+        
+        <Route path="/admin" element={<AdminLayout />} />
      
-//        <div>
-//         <Customer/>
-//        </div>
+        
+        <Route path="/register" element={<SignUp/>} />
+      </Routes>
+    </div>
+</Router>
+     
+     
         
       
-//   );
-// }
-
-// export default App;
-
-const App = () => {
-  return (
-    <div className="relative">
-      <Header/>
-      <Sidebar/>
-      <MainContent/>
-    </div>
   );
-};
+}
 
 export default App;
+
+
+
+
+

@@ -33,7 +33,7 @@ const Header = () => {
               </div>
             </div>
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg"style={{textDecoration:'none'}}>
                 <div className="py-2">
                   <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                     Settings
