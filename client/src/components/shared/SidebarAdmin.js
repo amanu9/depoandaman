@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SidebarAdmin = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -36,7 +37,7 @@ const SidebarAdmin = () => {
       <ul>
         <li><a href="#" className="block py-2 hover:bg-gray-300">Dashboard</a></li>
         <li><a href="#" className="block py-2 hover:bg-gray-300">Report</a></li>
-        <li><a href="#" className="block py-2 hover:bg-gray-300">Upload</a></li>
+       <Link to="/allusers">All users</Link>
         <li><a href="#" className="block py-2 hover:bg-gray-300">settings</a></li>
         <li><a href="#" className="block py-2 hover:bg-gray-300">Feature</a></li>
       </ul>
