@@ -22,17 +22,14 @@ const UserList = () => {
         console.log('error', error);
       });
   };
-  //end
-  // delete customer request
-  const deleteEmployee = () => {
+  const deleteEmployee = (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this record?");
   
     if (confirmDelete) {
-      Axios.delete(`http://localhost:3001/delete/${selectedRecord}`)
+      Axios.delete(`http://localhost:3001/delete/${id}`)
         .then(() => {
           window.alert("Deleted successfully");
-
-      
+          window.alert("User Data deleted successfully")
           fetchEmployees();
         })
         .catch((error) => {
@@ -42,6 +39,26 @@ const UserList = () => {
       console.log("Deletion canceled by user");
     }
   };
+  //end
+  // delete customer request
+  // const deleteEmployee = () => {
+  //   const confirmDelete = window.confirm("Are you sure you want to delete this record?");
+  
+  //   if (confirmDelete) {
+  //     Axios.delete(`http://localhost:3001/delete/${selectedRecord}`)
+  //       .then(() => {
+  //         window.alert("Deleted successfully");
+
+      
+  //         fetchEmployees();
+  //       })
+  //       .catch((error) => {
+  //         console.log("Error deleting record", error);
+  //       });
+  //   } else {
+  //     console.log("Deletion canceled by user");
+  //   }
+  // };
   // end
 
 
@@ -153,14 +170,11 @@ const UserList = () => {
                         </div>
 
                         <div
-                          class="flex items-center justify-center px-2 py-1 font-normal text-white bg-red-500 rounded-md hover:bg-[#932828] cursor-pointer"
-                          onClick={() => {
-                            setSelectedRecord(employee.id);
-                            deleteEmployee();
-                          }}
-                        >
-                          <MdDelete />
-                        </div>
+                class="flex items-center justify-center px-2 py-1 font-normal text-white bg-red-500 rounded-md hover:bg-[#932828] cursor-pointer"
+                onClick={() => deleteEmployee(employee.id)}
+              >
+                <MdDelete />
+              </div>
                       </div>
                       {/* </div> */}
                     </td>
