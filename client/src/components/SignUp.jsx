@@ -30,7 +30,7 @@ const EmployeeForm = () => {
           .then((response) => {
             console.log(response.data.message);
             console.log(response.data.userData);
-            window.confirm("User added successfully");
+            window.confirm("Registration successfully");
             // Clear the form fields after successful addition
             setfirstname("");
             setlastname("");

@@ -1,10 +1,11 @@
 
-
+// module required
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
 
+// setting connection to sql serve 
 app.use(cors());
 app.use(express.json());
 
@@ -14,7 +15,7 @@ var db = mysql.createConnection({
   password: "",
   database: "moviemanagementsystem",
 });
-
+// creating end point for user registsration 
 app.post("/create", (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
@@ -43,13 +44,30 @@ app.get("/check_username/:username", (req, res) => {
   });
 });
 
-// getting all list of user 
+// end point for getting all list of user 
 app.get("/userlist", (req, res) => {
   db.query("SELECT * FROM userregistration", function (err, result) {
     if (err) throw err;
     res.send(result);
   });
 });
+// end of it
+ 
+// end point for delete user 
+app.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+
+  db.query("DELETE FROM userregistration WHERE id=?", [id], function (err, result) {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error deleting record");
+    } else {
+      res.send("User Data deleted");
+    }
+  });
+});
+//end of delete 
+
 
 app.listen(3001, () => {
   console.log("Server started at http://localhost:3001");
