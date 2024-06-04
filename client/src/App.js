@@ -15,6 +15,7 @@ import Customer from './components/shared/Customer';
 import Layout from './components/shared/Layout';
 import Home from './components/pages/Home';
 import AdminLayout from './components/shared/LayoutAdmin';
+import UserList from './components/userlist';
 function App() {
   return (
     <Router>
@@ -24,8 +25,8 @@ function App() {
       <Route index element={<Home/>}></Route>
         
         <Route path="/admin" element={<AdminLayout />} />
-     
         
+        <Route path="/allusers" element={<UserList />} />
         <Route path="/register" element={<SignUp/>} />
       </Routes>
     </div>

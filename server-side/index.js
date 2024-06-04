@@ -42,6 +42,15 @@ app.get("/check_username/:username", (req, res) => {
     res.send({ exists: exists });
   });
 });
+
+// getting all list of user 
+app.get("/userlist", (req, res) => {
+  db.query("SELECT * FROM userregistration", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
 app.listen(3001, () => {
   console.log("Server started at http://localhost:3001");
 });
