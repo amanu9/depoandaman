@@ -1,9 +1,9 @@
-import Sidebar from "./shared/Sidebar";
+// import Sidebar from "./shared/Sidebar";
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { FaRegEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
-const UserList = () => {
+const Container = () => {
   const [employees, setEmployees] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
 
@@ -103,15 +103,7 @@ const UserList = () => {
                 &nbsp;
                 Add Customer
               </button>
-              <button
-                onClick
-                type="button"
-                className="flex space-y-4 items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              >
-
-                &nbsp;
-                Import Excel File
-              </button>
+             
             </div>
           </div>
         </div>
@@ -126,17 +118,12 @@ const UserList = () => {
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
               <tbody>
                 {employees.map((employee) => (
                   <tr key={employee.id} >
                     <td>{employee.firstname}</td>
                     <td>{employee.lastname}</td>
                     <td>{employee.username}</td>
-
-                    <td>
-
-                    </td>
                     <td className="px-4 py-2 border-b">
                       <div className="flex gap-2">
                         <div
@@ -158,7 +145,6 @@ const UserList = () => {
                   </tr>
                 ))}
               </tbody>
-            </tbody>
           </table>
         </div>
       </div>
@@ -166,4 +152,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default Container;

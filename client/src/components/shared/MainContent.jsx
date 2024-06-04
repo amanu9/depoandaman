@@ -199,7 +199,6 @@ const MainContent = () => {
   };
   return (
     <div className="ml-64 pt-10 pb-8 px-4">
-
       <div className='flex justify-between'>
         <div><h2 className="text-lg font-bold mb-4  bg-slate-400 rounded p-2">Horizontal Scroll List</h2></div>
         <div><h2 onClick={toggleDropdown} className='text-lg font-bold mb-4 cursor-pointer bg-slate-400 rounded p-2'>Recommended Movies</h2></div>

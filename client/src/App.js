@@ -16,6 +16,8 @@ import Layout from './components/shared/Layout';
 import Home from './components/pages/Home';
 import AdminLayout from './components/shared/LayoutAdmin';
 import UserList from './components/userlist';
+import Dashboard from './components/AllComponents/dashboard';
+import Report from './components/AllComponents/Report';
 function App() {
   return (
     <Router>
@@ -23,18 +25,15 @@ function App() {
       <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route index element={<Home/>}></Route>
+      <Route path="/report" element={<Report />} />
         
-        <Route path="/admin" element={<AdminLayout />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         
         <Route path="/allusers" element={<UserList />} />
         <Route path="/register" element={<SignUp/>} />
       </Routes>
     </div>
-</Router>
-     
-     
-        
-      
+</Router>  
   );
 }
 
