@@ -1,18 +1,47 @@
-var mysql = require('mysql');
 
-var con = mysql.createConnection({
+
+const express = require("express");
+const app = express();
+const mysql = require("mysql");
+const cors = require("cors");
+
+app.use(cors());
+app.use(express.json());
+
+var db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "moviemanagementsystem"
+  database: "moviemanagementsystem",
 });
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-  var sql = "INSERT INTO user (firstname, lastname,phone, password ) VALUES ('amanuel', 'amanuel',0912345,'123456')";
-  con.query(sql, function (err, result) {
+app.post("/create", (req, res) => {
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+  const username = req.body.username;
+  const password = req.body.password;
+ 
+
+  db.query(
+    "INSERT INTO userregistration(firstname,lastname,username,password) VALUES(?,?,?,?)",
+    [firstname, lastname, username, password],
+    function (err, result) {
+      if (err) throw err;
+      res.send("user added");
+    }
+  );
+});
+
+app.get("/check_username/:username", (req, res) => {
+  const username = req.params.username;
+
+  db.query("SELECT COUNT(*) as count FROM userregistration WHERE username = ?", [username], function (err, result) {
     if (err) throw err;
-    console.log(" record inserted"+ result.affectedRows);
+
+    const exists = result[0].count > 0;
+    res.send({ exists: exists });
   });
+});
+app.listen(3001, () => {
+  console.log("Server started at http://localhost:3001");
 });

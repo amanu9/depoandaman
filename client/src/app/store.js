@@ -1,18 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
+// import { configureStore } from '@reduxjs/toolkit';
 
-// Import your reducers here
+// // Import your reducers here
 
-import { employeeSlice } from '../api/user_registration_slice';
+// import { employeeSlice } from '../api/user_registration_slice';
 
-export const store = configureStore({
-    reducer: {
-        employee: employeeSlice.reducer,
+// export const store = configureStore({
+//     reducer: {
+//         employee: employeeSlice.reducer,
       
-        // sharedDataReducer:sharedDataStore
-    }
-});
+//         // sharedDataReducer:sharedDataStore
+//     }
+// });
 
 
 
 
-export default store;
+// export default store;
