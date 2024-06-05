@@ -8,7 +8,7 @@ import { FaEllipsis } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import MyNavbar from "./MyNavbar";
 import Sidebar from "./Sidebar";
-
+import Axios  from "axios";
 const Report = () => {
   // const dispatch = useDispatch();
   // const [showSuccess, setShowSuccess] = useState(true);
@@ -30,37 +30,25 @@ const Report = () => {
     );
   };
 
-  // useEffect(() => {
-  //   dispatch(getAdminReport()).then((action) => {
-  //     const data1 = [
-  //       { name: 'Total SMS', value: action.payload.total_sms },
-  //       { name: 'Daily Sent SMS', value: action.payload.daily_sent_sms },
-  //       { name: 'Monthly Sent SMS', value: action.payload.monthly_sent_sms },
-  //       { name: 'Yearly Sent SMS', value: action.payload.yearly_sent_sms },
-  //     ];
-  //     setData1(data1);
-  //     const data = [
-  //       {
-  //         name: 'Total',
-  //         customer: action.payload.total_new
-  //       },
-  //       {
-  //         name: 'Daily',
-  //         customer: action.payload.daily_new
-  //       },
-  //       {
-  //         name: 'Monthly',
-  //         customer: action.payload.monthly_new
-  //       },
-  //       {
-  //         name: 'Yearly',
-  //         customer: action.payload.yearly_new
-  //       }
-  //     ];
-  //     setData(data);
-  //     setReport(action.payload);
-  //   });
-  // }, [dispatch]);
+  const [totalmovies, setMoviestotal] = useState(0);
+  // const [selectedRecord, setSelectedRecord] = useState(null);
+
+  // grap user list
+  useEffect(() => {
+    fetchMovieTotal();
+  }, []);
+
+// fetching employee list 
+  const fetchMovieTotal = () => {
+    Axios.get('http://localhost:3001/totalmovies')
+      .then((response) => {
+        setMoviestotal(response.data.total_movies);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  };
+  
 
   return (
     <>
@@ -81,8 +69,8 @@ const Report = () => {
 
             <div className="h-[100px] rounded-[8px] bg-white border-l-[4px] border-[#4E73DF] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
               <div>
-                <h1 className="text-[#B589DF] text-[18px]  font-bold text-center">Total Customer</h1>
-                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px]  text-center">100</h1>
+                <h1 className="text-[#B589DF] text-[18px]  font-bold text-center">Total Movies</h1>
+                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px]  text-center">{totalmovies}</h1>
               </div>
               {/* <IoHomeOutline /> */}
             </div>

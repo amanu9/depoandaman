@@ -7,11 +7,12 @@ import slider1 from '../image/slider4.jpg'
 import slider2 from '../image/slider2.jpg'
 import slider3 from '../image/slider3.jpg'
 import Footer from '../inc/footer';
+import MyNavbar from '../inc/HomeNavbar';
 function Home() {
   return (
 
     <div>
-<Navbar/>
+<MyNavbar/>
       < Slider />
       <div>
         <section className="section">

@@ -22,6 +22,8 @@ import MoviesRegister from './components/AllComponents/MoviesRegister';
 import UserDashboard from'./components/AllComponents/User/dashboard';
 import MovieRegistrationForm from './components/AllComponents/MoviesRegister';
 import Settings from './components/AllComponents/Settings';
+import MovieList from './components/AllComponents/MovieList';
+import CustomerReport from './components/AllComponents/CustomerReport';
 function App() {
   return (
     <Router>
@@ -35,7 +37,8 @@ function App() {
         <Route path='/settings' element={<Settings/>}/>
         <Route path="/allusers" element={<UserList />} />
         <Route path="/register" element={<SignUp/>} />
-
+        <Route path="/movielist" element={<MovieList/>} />
+        <Route path='/totalusers' element={<CustomerReport/>}/>
         <Route path='/war' element={<UserDashboard/>}/>
         {/* Movies add */}
         <Route path="/moviecreate" element={<MovieRegistrationForm/>} />

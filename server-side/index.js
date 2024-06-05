@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
+const jwt = require('jsonwebtoken')
 
 // setting connection to sql serve 
 app.use(cors());
@@ -15,52 +16,98 @@ var db = mysql.createConnection({
   password: "",
   database: "moviemanagementsystem",
 });
-
-
-
 // creating end point for user registsration 
-app.post("/create", (req, res) => {
+const bcrypt = require('bcrypt');
+app.post("/create", async (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   const username = req.body.username;
   const password = req.body.password;
- 
 
-  //Movies registration 
-  // const title=req.body.title;
-  // const description =req.body.description;
-  // const type = req.body.type;
-  // const duration =req.body.duration;
-  // const releaseddate=req.body.releaseddate;
+  try {
+    // Hash the password using bcrypt
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-
- 
-  //insert data into movies table 
-
-  db.query(
-    "INSERT INTO movies(title,description,type,duration,releaseddate) VALUES(?,?,?,?,?)",
-    [title, description, type, duration,releaseddate],
-    function (err, result) {
-      if (err) throw err;
-      res.send("movie is  added successfully");
-    }
-  );
+    db.query(
+      "INSERT INTO userregistration(firstname,lastname,username,password) VALUES(?,?,?,?)",
+      [firstname, lastname, username, hashedPassword],
+      function (err, result) {
+        if (err) throw err;
+        res.send("user added");
+      }
+    );
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error creating user");
+  }
 });
 
-app.post("/moviecreate", (req, res) => {
+
+//Movie Regstration
+
+app.post("/moviecreate", async (req, res) => {
   const title = req.body.title;
-  const director=req.body.director;
-  const genre=req.body.genre;
-  
-  db.query(
-    "INSERT INTO movies (title,director,genre) VALUES(?,?,?)",
-    [title, director, genre],
-    function (err, result) {
-      if (err) throw err;
-      res.send("movie is  added successfully");
-    }
-  );
+  const director = req.body.director;
+  const genre = req.body.genre;
+
+  try {
+    
+    db.query(
+      "INSERT INTO movies(title,director,genre) VALUES(?,?,?)",
+      [title, director, genre],
+      function (err, result) {
+        if (err) throw err;
+        res.send("Movie added");
+      }
+    );
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error creating Movie");
+  }
 });
+
+//End of Movie Registration 
+
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Action' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+///
+// end point for delete user 
+app.delete("/moviedelete/:id", (req, res) => {
+  const id = req.params.id;
+
+  db.query("DELETE FROM movies WHERE id	=?", [id], function (err, result) {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error deleting record");
+    } else {
+      res.send("User Data deleted");
+    }
+  });
+});
+
+
+//get Total movies 
+
+app.get("/totalmovies", (req, res) => {
+  db.query("SELECT COUNT(*) AS total_movies FROM movies", function (err, result) {
+    if (err) throw err;
+    res.send(result[0]);
+  });
+});
+
+app.get("/totalusers", (req, res) => {
+  db.query("SELECT COUNT(*) AS total_users FROM userregistration", function (err, result) {
+    if (err) throw err;
+    res.send(result[0]);
+  });
+});
+
 
 app.get("/check_username/:username", (req, res) => {
   const username = req.params.username;
@@ -79,8 +126,6 @@ app.get("/userlist", (req, res) => {
     if (err) throw err;
     res.send(result);
   });
-
- 
 });
 // end of it
  
@@ -97,39 +142,50 @@ app.delete("/delete/:id", (req, res) => {
     }
   });
 });
+
 //end of delete 
-app.post("/movie-create", (req, res) => {
-//Movies registration 
-const title=req.body.title;
-const description =req.body.description;
-const type = req.body.type;
-const duration =req.body.duration;
-const releaseddate=req.body.releaseddate;
 
- db.query(
-    "INSERT INTO userregistration(firstname,lastname,username,password) VALUES(?,?,?,?)",
-    [firstname, lastname, username, password],
-    function (err, result) {
-      if (err) throw err;
-      res.send("user added");
+
+// end point for login
+
+app.post('/login', (req, res) => {
+  const sql = "SELECT * FROM userregistration WHERE username = ?";
+
+  db.query(sql, [req.body.username], (err, data) => {
+    if (err) {
+      return res.json("error");
     }
-  );
-})
- //movie list 
- app.get("/movielist", (req, res) => {
-  db.query("SELECT * FROM movies", function (err, result) {
-    if (err) throw err;
-    res.send(result);
-  });});
 
-  app.get("/war", (req, res) => {
-    db.query("SELECT * FROM movies where genre='war'", function (err, result) {
-      if (err) throw err;
-      res.send(result);
-    });});
+    if (data.length > 0) {
+      const hashedPassword = data[0].password;
+      // to generate token
+      const token = jwt.sign({id:data[0].id},"Tewo Tecnology Solution");
+//encript password
+      bcrypt.compare(req.body.password, hashedPassword, (err, result) => {
+        if (err) {
+          return res.status(500).json("Internal  server error");
+        }
 
+        if (result) {
+          // return res.json("success");
+          
+          return res.status(200).send({
+            role:data[0].role,
+            data:"success",
+            token:token
+          });
+        } else {
+          return res.status(401).send({
+            token:null
+          });
+        }
+      });
+    } else {
+      return res.status(500).json("Internal  server error");
+    }
+  });
+});
 
 app.listen(3001, () => {
   console.log("Server started at http://localhost:3001");
 });
-

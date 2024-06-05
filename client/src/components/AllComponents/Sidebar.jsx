@@ -9,7 +9,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="bg-wheat text-white h-screen p-6  border-r-slate-500 border-2 shadow-sm">
+    <div className="bg-gray-200 text-white h-screen p-6  border-r-slate-500 border-1 shadow-sm">
       {/* Dashboard */}
       <Link to="/dashboard">
         <div className="mb-6 cursor-pointer py-2  rounded hover:bg-gray-400 p-6">
@@ -31,6 +31,27 @@ const Sidebar = () => {
         </div>
       </Link>
       {/* Report */}
+      <div>
+        
+        <Link to="/totalusers">
+        <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
+          <a href="#" className="flex items-center">
+            <svg
+              className="h-6 w-6 mr-2"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+            </svg>
+            <span>Customer Managment </span>
+          </a>
+        </div>
+      </Link>
       <Link to="/report">
         <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
           <a href="#" className="flex items-center">
@@ -46,10 +67,11 @@ const Sidebar = () => {
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
               <rect x="2" y="9" width="4" height="12" />
             </svg>
-            <span>Report</span>
+            <span>Movie Managment</span>
           </a>
         </div>
       </Link>
+      </div>
       <Link to="/settings">
         {/* Setting */}
         <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
@@ -91,24 +113,25 @@ const Sidebar = () => {
         </div>
       </Link>
       {/* Features */}
-      <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
-        <a href="#" className="flex items-center">
-          <svg
-            className="h-6 w-6 mr-2"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-          <span>Features</span>
-        </a>
-      </div>
-
+      <Link to="/movielist">
+        <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
+          <a href="#" className="flex items-center">
+            <svg
+              className="h-6 w-6 mr-2"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <span>Movie list</span>
+          </a>
+        </div>
+      </Link>
       {/* Logout */}
       <div className="absolute bottom-6 left-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
         <a href="#" className="flex items-center">
