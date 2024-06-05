@@ -269,7 +269,7 @@ const MainContent = () => {
       <div className="bg-gray rounded-lg  overflow-y-auto" style={{ maxHeight: '400px' }}>
         <div className="grid grid-cols-3 gap-4 ">
           {cards[activeGenre].map((card, index) => (
-            <div key={index} className="bg-white  bg-gray-300 rounded-lg shadow-md p-2 ">
+            <div key={index} className="bg-white rounded-lg shadow-md p-2 ">
               <img src={card.image} alt={card.title} className="rounded-lg w-full h-1/2" />
               <div>
               <h3 className="text-lg font-bold">{card.title}</h3>

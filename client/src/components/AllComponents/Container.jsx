@@ -22,6 +22,7 @@ const Container = () => {
         console.log('error', error);
       });
   };
+  
   const deleteEmployee = (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this record?");
   

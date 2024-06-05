@@ -8,7 +8,7 @@ const MyNavbar = () => {
   };
 
   return (
-    <nav className="bg-gray-300 py-2 sticky">
+    <nav className="bg-gray-300 py-1 sticky">
       <div className="container mx-auto flex items-center justify-between">
         {/* Company Logo and Name */}
         <div className="flex items-center ">
@@ -39,14 +39,14 @@ const MyNavbar = () => {
           </div>
           <div className="relative">
             <img
-              src="/avatar.png"
+              src={logo}
               alt="Avatar"
               className="h-10 w-10 rounded-full cursor-pointer"
               onClick={toggleDropdown}
             />
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg w-48 z-10">
-                <div className="py-2">
+                <div className="py-2 sticky">
                   <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
                     Settings
                   </a>

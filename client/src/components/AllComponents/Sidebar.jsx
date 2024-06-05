@@ -9,11 +9,11 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="bg-gray-800 text-white h-screen p-6 w-1/4">
+    <div className="bg-wheat text-white h-screen p-6  border-r-slate-500 border-2 shadow-sm">
       {/* Dashboard */}
       <Link to="/dashboard">
-        <div className="mb-6 cursor-pointer bg-blue-500 py-2 px-4 rounded">
-          <a href="#" className="flex items-center">
+        <div className="mb-6 cursor-pointer py-2  rounded hover:bg-gray-400 p-6">
+          <a href="#" className="flex items-center ">
             <svg
               className="h-6 w-6 mr-2"
               viewBox="0 0 24 24"
@@ -32,7 +32,7 @@ const Sidebar = () => {
       </Link>
       {/* Report */}
       <Link to="/report">
-        <div className="mb-6 cursor-pointer">
+        <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
           <a href="#" className="flex items-center">
             <svg
               className="h-6 w-6 mr-2"
@@ -50,28 +50,48 @@ const Sidebar = () => {
           </a>
         </div>
       </Link>
-
-      {/* Setting */}
-      <div className="mb-6 cursor-pointer">
-        <a href="#" className="flex items-center">
-          <svg
-            className="h-6 w-6 mr-2"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="3" />
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-          </svg>
-          <span>Setting</span>
-        </a>
-      </div>
-
+      <Link to="/settings">
+        {/* Setting */}
+        <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
+          <a href="#" className="flex items-center">
+            <svg
+              className="h-6 w-6 mr-2"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+            <span>Setting</span>
+          </a>
+        </div>
+      </Link>
+      <Link to="/MoviesRegster">
+        {/* Add movies */}
+        <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
+          <a href="#" className="flex items-center">
+            <svg
+              className="h-6 w-6 mr-2"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <span>Add Movie</span>
+          </a>
+        </div>
+      </Link>
       {/* Features */}
-      <div className="mb-6 cursor-pointer">
+      <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
         <a href="#" className="flex items-center">
           <svg
             className="h-6 w-6 mr-2"
@@ -90,7 +110,7 @@ const Sidebar = () => {
       </div>
 
       {/* Logout */}
-      <div className="absolute bottom-6 left-6 cursor-pointer">
+      <div className="absolute bottom-6 left-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
         <a href="#" className="flex items-center">
           <svg
             className="h-6 w-6 mr-2"
