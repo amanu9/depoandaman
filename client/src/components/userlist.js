@@ -7,7 +7,7 @@ const UserList = () => {
   const [employees, setEmployees] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
 
-  // grap user list
+  // grap user list from the data and make available 
   useEffect(() => {
     fetchEmployees();
   }, []);
@@ -22,6 +22,7 @@ const UserList = () => {
         console.log('error', error);
       });
   };
+  // delete operation
   const deleteEmployee = (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this record?");
   
@@ -40,26 +41,7 @@ const UserList = () => {
     }
   };
   //end
-  // delete customer request
-  // const deleteEmployee = () => {
-  //   const confirmDelete = window.confirm("Are you sure you want to delete this record?");
-  
-  //   if (confirmDelete) {
-  //     Axios.delete(`http://localhost:3001/delete/${selectedRecord}`)
-  //       .then(() => {
-  //         window.alert("Deleted successfully");
 
-      
-  //         fetchEmployees();
-  //       })
-  //       .catch((error) => {
-  //         console.log("Error deleting record", error);
-  //       });
-  //   } else {
-  //     console.log("Deletion canceled by user");
-  //   }
-  // };
-  // end
 
 
   return (

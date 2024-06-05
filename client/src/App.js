@@ -16,6 +16,7 @@ import Layout from './components/shared/Layout';
 import Home from './components/pages/Home';
 import AdminLayout from './components/shared/LayoutAdmin';
 import UserList from './components/userlist';
+import Protected from './components/protected';
 function App() {
   return (
     <Router>
@@ -23,11 +24,27 @@ function App() {
       <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route index element={<Home/>}></Route>
-        
-        <Route path="/admin" element={<AdminLayout />} />
+      <Route
+            index
+            element={
+              
+                <Home />
+             
+            }
+          />
+           <Route
+           
+            element={
+              
+                <AdminLayout />
+             
+            }
+          />
+       
         
         <Route path="/allusers" element={<UserList />} />
         <Route path="/register" element={<SignUp/>} />
+        <Route path="/admin" element={<AdminLayout/>} />
       </Routes>
     </div>
 </Router>

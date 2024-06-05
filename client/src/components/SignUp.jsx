@@ -9,7 +9,7 @@ const EmployeeForm = () => {
   const [lastname, setlastname] = useState("");
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-
+  
   function addEmployee(event) {
     event.preventDefault(); 
   
@@ -25,7 +25,8 @@ const EmployeeForm = () => {
             firstname: firstname,
             lastname: lastname,
             username: username,
-            password: password
+            password: password,
+           
           })
           .then((response) => {
             console.log(response.data.message);
