@@ -15,6 +15,9 @@ var db = mysql.createConnection({
   password: "",
   database: "moviemanagementsystem",
 });
+
+
+
 // creating end point for user registsration 
 app.post("/create", (req, res) => {
   const firstname = req.body.firstname;
@@ -23,12 +26,38 @@ app.post("/create", (req, res) => {
   const password = req.body.password;
  
 
+  //Movies registration 
+  // const title=req.body.title;
+  // const description =req.body.description;
+  // const type = req.body.type;
+  // const duration =req.body.duration;
+  // const releaseddate=req.body.releaseddate;
+
+
+ 
+  //insert data into movies table 
+
   db.query(
-    "INSERT INTO userregistration(firstname,lastname,username,password) VALUES(?,?,?,?)",
-    [firstname, lastname, username, password],
+    "INSERT INTO movies(title,description,type,duration,releaseddate) VALUES(?,?,?,?,?)",
+    [title, description, type, duration,releaseddate],
     function (err, result) {
       if (err) throw err;
-      res.send("user added");
+      res.send("movie is  added successfully");
+    }
+  );
+});
+
+app.post("/moviecreate", (req, res) => {
+  const title = req.body.title;
+  const director=req.body.director;
+  const genre=req.body.genre;
+  
+  db.query(
+    "INSERT INTO movies (title,director,genre) VALUES(?,?,?)",
+    [title, director, genre],
+    function (err, result) {
+      if (err) throw err;
+      res.send("movie is  added successfully");
     }
   );
 });
@@ -50,6 +79,8 @@ app.get("/userlist", (req, res) => {
     if (err) throw err;
     res.send(result);
   });
+
+ 
 });
 // end of it
  
@@ -67,8 +98,38 @@ app.delete("/delete/:id", (req, res) => {
   });
 });
 //end of delete 
+app.post("/movie-create", (req, res) => {
+//Movies registration 
+const title=req.body.title;
+const description =req.body.description;
+const type = req.body.type;
+const duration =req.body.duration;
+const releaseddate=req.body.releaseddate;
+
+ db.query(
+    "INSERT INTO userregistration(firstname,lastname,username,password) VALUES(?,?,?,?)",
+    [firstname, lastname, username, password],
+    function (err, result) {
+      if (err) throw err;
+      res.send("user added");
+    }
+  );
+})
+ //movie list 
+ app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });});
+
+  app.get("/war", (req, res) => {
+    db.query("SELECT * FROM movies where genre='war'", function (err, result) {
+      if (err) throw err;
+      res.send(result);
+    });});
 
 
 app.listen(3001, () => {
   console.log("Server started at http://localhost:3001");
 });
+

@@ -18,6 +18,10 @@ import AdminLayout from './components/shared/LayoutAdmin';
 import UserList from './components/userlist';
 import Dashboard from './components/AllComponents/dashboard';
 import Report from './components/AllComponents/Report';
+import MoviesRegister from './components/AllComponents/MoviesRegister';
+import UserDashboard from'./components/AllComponents/User/dashboard';
+import MovieRegistrationForm from './components/AllComponents/MoviesRegister';
+import Settings from './components/AllComponents/Settings';
 function App() {
   return (
     <Router>
@@ -26,11 +30,15 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route index element={<Home/>}></Route>
       <Route path="/report" element={<Report />} />
-        
+      <Route path='/MoviesRegster' element={<MovieRegistrationForm/>}/>
         <Route path="/dashboard" element={<Dashboard />} />
-        
+        <Route path='/settings' element={<Settings/>}/>
         <Route path="/allusers" element={<UserList />} />
         <Route path="/register" element={<SignUp/>} />
+
+        <Route path='/war' element={<UserDashboard/>}/>
+        {/* Movies add */}
+        <Route path="/moviecreate" element={<MovieRegistrationForm/>} />
       </Routes>
     </div>
 </Router>  
