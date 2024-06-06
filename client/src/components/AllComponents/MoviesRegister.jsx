@@ -39,46 +39,75 @@ const MovieRegistrationForm = () => {
     "Western",
   ];
 
+  // const addMovie = (e) => {
+  //   e.preventDefault();
+  //   // Add your logic to save the movie data here
+  //   console.log({
+  //     title,
+  //     director,
+  //     releaseYear,
+  //     runtime,
+  //     genre,
+  //     rating,
+  //     plotSummary,
+  //     cast,
+  //   });
+
+  //   Axios.post(`http://localhost:3001/moviecreate`, {
+  //     title: title,
+  //     director: director,
+  //     genre: genre,
+  //   })
+  //     .then((response) => {
+  //       console.log(response.data.message);
+  //       console.log(response.data.userData);
+  //       window.confirm("Registration successfully");
+  //       // Clear the form fields after successful addition
+  //       setTitle("");
+  //       setDirector("");
+  //       setGenre("");
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error:", error);
+  //       window.confirm("Unable to register user");
+  //     });
+  // };
+
   const addMovie = (e) => {
     e.preventDefault();
-    // Add your logic to save the movie data here
-    console.log({
-      title,
-      director,
-      releaseYear,
-      runtime,
-      genre,
-      rating,
-      plotSummary,
-      cast,
-    });
-
-    Axios.post(`http://localhost:3001/moviecreate`, {
-      title: title,
-      director: director,
-      genre: genre,
+  
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('director', director);
+    formData.append('genre', genre);
+    formData.append('image', selectedImage);
+  
+    Axios.post(`http://localhost:3001/moviecreate`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     })
       .then((response) => {
         console.log(response.data.message);
         console.log(response.data.userData);
-        window.confirm("Registration successfully");
+        window.confirm("Movie registration successful");
         // Clear the form fields after successful addition
         setTitle("");
         setDirector("");
         setGenre("");
+        setSelectedImage(null);
       })
       .catch((error) => {
         console.log("Error:", error);
-        window.confirm("Unable to register user");
+        window.confirm("Unable to register movie");
       });
   };
-
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
     setSelectedImages(files);
-    // Increment the inputKey state to force re-render of the file input
-    setInputKey(prevKey => prevKey + 1);
- };
+    setSelectedImage(files[0]); // Update the selectedImage state
+    setInputKey(prevKey => prevKey + 1); // Increment the inputKey to force re-render
+  };
 
   return (
     <>
@@ -159,25 +188,26 @@ const MovieRegistrationForm = () => {
               </div>
 
               <div className="mb-4">
-                <label
-                  className="block text-gray-700 font-bold mb-2"
-                  htmlFor="title"
-                >
-                  Image
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="title"
-                  type="file"
-                  placeholder="select Image"
-                  value={title}
-                  onChange={(e) => {
-                    // Process the selected file
-                    setSelectedImage(e.target.files[0]);
-                    
-                  }}
-                />
-              </div>
+      <label className="block text-gray-700 font-bold mb-2" htmlFor="title">
+        Image
+      </label>
+      <input
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="title"
+        type="file"
+        placeholder="select Image"
+        value={title}
+        onChange={handleImageChange}
+        key={inputKey} // Use the inputKey to force re-render
+      />
+      {selectedImage && (
+        <img width="100" height="500" 
+          src={URL.createObjectURL(selectedImage)}
+          alt="Selected"
+          className="mt-2 max-w-xs"
+        />
+      )}
+    </div>
               {/* Other form fields */}
               <div className="flex items-center justify-between">
                 <button
