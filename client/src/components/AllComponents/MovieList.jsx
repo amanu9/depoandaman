@@ -1,7 +1,7 @@
 // import Sidebar from "./shared/Sidebar";
 import { useState, useEffect } from "react";
 import Axios from "axios";
-import { FaRegEdit } from "react-icons/fa";
+import { FaRegEdit, FaSearch } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import MyNavbar from "./MyNavbar";
 import Sidebar from "./Sidebar";
@@ -76,41 +76,21 @@ const MovieList = () => {
                     {/* Add any additional elements or functionality here */}
                   </div>
                 </div>
-                <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-start md:space-x-3 flex-shrink-0">
+                <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg
-                        aria-hidden="true"
-                        className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                      <FaSearch style={{color:'gray', height:'16px'}}/>
                     </div>
                     <input
                       type="text"
-                      className="bg-gray-50 border mx-2 px-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="Search"
+                      className="shadow appearance-none border rounded w-full py-2 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"                      placeholder="Search"
                       required
                       aria-label="filterbox"
                       aria-describedby="basic-addon1"
                       onChange
                     />
                   </div>
-                  <div className="flex grid-cols-1 gap-3 p-2 sm:grid-cols-1 md:grid-cols-1">
-                    <button
-                      className="flex space-y-4 items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-gray-900 bg-blue border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                      onClick
-                    >
-                      &nbsp; Add Movie
-                    </button>
-                  </div>
+                  
                 </div>
               </div>
               <div className="overflow-x-auto">
@@ -119,8 +99,11 @@ const MovieList = () => {
                     <tr>
                       <th scope="col">Title</th>
                       <th scope="col">Director</th>
+                      <th scope="col">Year</th>
+                      <th scope="col">Duration</th>
                       <th scope="col">Genre</th>
-
+                      <th scope="col">Image</th>
+                      <th scope="col">Cast</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -129,12 +112,16 @@ const MovieList = () => {
                       <tr key={movies.id}>
                         <td>{movies.title}</td>
                         <td>{movies.director}</td>
+                        <td>{movies.year}</td>
+                        <td>{movies.duration}</td>
                         <td>{movies.genre}</td>
+                        <td>{movies.image}</td>
+                        <td>{movies.cast}</td>
                         <td className="px-4 py-2 border-b">
                           <div className="flex gap-2">
                             <div
                               class="flex items-center justify-center px-1 py-1 font-normal text-white bg-[#0d6efd] rounded-md hover:bg-[#2b76e7] cursor-pointer"
-                              onClick
+                              // onClick={() => editMovie(movies.id)}
                             >
                               <FaRegEdit />
                             </div>

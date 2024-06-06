@@ -18,7 +18,7 @@ const UserDashboard = () => {
         setImageCards(
           response.data.map((movie) => ({
             // image: "https://via.placeholder.com/300x200",
-            image:cardimage,
+            image:movie.image,
             title: movie.title,
             genre: movie.genre,
             director:movie.director,

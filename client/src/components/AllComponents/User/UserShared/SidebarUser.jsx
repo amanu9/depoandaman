@@ -11,49 +11,49 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="bg-gray-200 text-white h-screen p-6  border-r-slate-500 border-1 shadow-sm">
+    <div className="bg-[#293A77] text-white h-screen p-6  border-r-slate-500 border-1 shadow-sm"style={{ width: "250px" }}>
       {/* Dashboard */}
-      <Link to="/userdashboard">
-        <div className="mb-6 cursor-pointer py-2  rounded hover:bg-gray-400 p-6">
-          <a href="#" className="flex items-center gap-3">
+      <Link to="/userdashboard" className="no-underline">
+        <div className="mb-6 cursor-pointer py-2  rounded hover:bg-blue-900 p-6">
+          <a href="#" className="flex items-center text-white text-lg gap-1 no-underline  hover:text-white">
             <MdDashboard/>
-            <span>User Dashboard</span>
+            <span className=" hover:text-white">User Dashboard</span>
           </a>
         </div>
       </Link>
       {/* Report */}
       
-      <Link to="/watchlists">
-        <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
-          <a href="#" className="flex items-center gap-3">
-            <MdMovieCreation/>
+      <Link to="/watchlists" className="no-underline">
+      <div className="mb-6 cursor-pointer  hover:bg-blue-900 p-1 hover:rounded">
+      <a href="#" className="flex items-center  text-white text-lg gap-2 no-underline  hover:text-white">
+      <MdMovieCreation/>
             <span>Watch Lists</span>
           </a>
         </div>
       </Link>
       
-      <Link to="/favorites">
+      <Link to="/favorites"  className="no-underline">
         {/* Add movies */}
-        <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
-          <a href="#" className="flex items-center gap-3">
-            <FaHeart/>
+        <div className="mb-6 cursor-pointer  hover:bg-blue-900 p-1 hover:rounded">
+        <a href="#" className="flex items-center text-white text-lg gap-2 no-underline  hover:text-white">
+        <FaHeart/>
             <span>Favorites</span>
           </a>
         </div>
       </Link>
-      <Link to="/usersettings">
+      <Link to="/usersettings" className="no-underline">
         {/* Setting */}
-        <div className="mb-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
-          <a href="#" className="flex items-center gap-3">
-            <MdSettings/>
+        <div className="mb-6 cursor-pointer hover:bg-blue-900 p-1 hover:rounded">
+        <a href="#" className="flex items-center text-white text-lg gap-2 no-underline  hover:text-white">
+        <MdSettings/>
             <span>Setting</span>
           </a>
         </div>
       </Link>
       {/* Logout */}
-      <div className="absolute bottom-6 left-6 cursor-pointer  hover:bg-gray-400 p-1 hover:rounded">
-        <a href="#" className="flex items-center gap-3">
-          <svg
+      <div className="absolute bottom-6 left-6 cursor-pointer  hover:bg-blue-900 p-1 hover:rounded ">
+      <a href="#" className="flex items-center gap-2 text-red-500 text-lg no-underline  hover:text-white">
+      <svg
             className="h-6 w-6 mr-2"
             viewBox="0 0 24 24"
             fill="none"
