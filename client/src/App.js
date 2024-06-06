@@ -19,11 +19,14 @@ import UserList from './components/userlist';
 import Dashboard from './components/AllComponents/dashboard';
 import Report from './components/AllComponents/Report';
 import MoviesRegister from './components/AllComponents/MoviesRegister';
-import UserDashboard from'./components/AllComponents/User/dashboard';
+import UserDashboard from'./components/AllComponents/User/UserDashboard/UserDashboard';
 import MovieRegistrationForm from './components/AllComponents/MoviesRegister';
 import Settings from './components/AllComponents/Settings';
 import MovieList from './components/AllComponents/MovieList';
 import CustomerReport from './components/AllComponents/CustomerReport';
+import Setting from './components/AllComponents/User/UserSidebarlinks/Setting';
+import Watchlist from './components/AllComponents/User/UserSidebarlinks/Watchlist';
+import Favorites from './components/AllComponents/User/UserSidebarlinks/Favorites';
 function App() {
   return (
     <Router>
@@ -39,7 +42,11 @@ function App() {
         <Route path="/register" element={<SignUp/>} />
         <Route path="/movielist" element={<MovieList/>} />
         <Route path='/totalusers' element={<CustomerReport/>}/>
-        <Route path='/war' element={<UserDashboard/>}/>
+        <Route path='/userdashboard' element={<UserDashboard/>}/>
+        <Route path='/usersettings' element={<Setting/>}/>
+        <Route path='/watchlists' element={<Watchlist/>}/>
+        <Route path='/favorites' element={<Favorites/>}/>
+
         {/* Movies add */}
         <Route path="/moviecreate" element={<MovieRegistrationForm/>} />
       </Routes>

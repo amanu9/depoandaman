@@ -105,7 +105,7 @@ app.post("/moviecreate", upload.single('image'), async (req, res) => {
 //End of Movie Registration 
 
 app.get("/movielist", (req, res) => {
-  db.query("SELECT * FROM movies WHERE genre = 'Action' ", function (err, result) {
+  db.query("SELECT * FROM movies WHERE ", function (err, result) {
     if (err) throw err;
     res.send(result);
   });
@@ -205,6 +205,12 @@ app.get("/totalusers", (req, res) => {
   });
 });
 
+app.get("/genres", (req, res) => {
+  db.query("SELECT DISTINCT genre FROM movies", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
 
 app.get("/check_username/:username", (req, res) => {
   const username = req.params.username;
