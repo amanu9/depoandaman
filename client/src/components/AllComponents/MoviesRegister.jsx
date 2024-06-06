@@ -38,54 +38,59 @@ const MovieRegistrationForm = () => {
     "Sport",
     "Western",
   ];
-
-  // const addMovie = (e) => {
-  //   e.preventDefault();
-  //   // Add your logic to save the movie data here
-  //   console.log({
-  //     title,
-  //     director,
-  //     releaseYear,
-  //     runtime,
-  //     genre,
-  //     rating,
-  //     plotSummary,
-  //     cast,
-  //   });
-
-  //   Axios.post(`http://localhost:3001/moviecreate`, {
-  //     title: title,
-  //     director: director,
-  //     genre: genre,
-  //   })
-  //     .then((response) => {
-  //       console.log(response.data.message);
-  //       console.log(response.data.userData);
-  //       window.confirm("Registration successfully");
-  //       // Clear the form fields after successful addition
-  //       setTitle("");
-  //       setDirector("");
-  //       setGenre("");
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error:", error);
-  //       window.confirm("Unable to register user");
-  //     });
-  // };
-
-  const addMovie = (e) => {
-    e.preventDefault();
+ // Add validation states
+ const [titleError, setTitleError] = useState("");
+ const [directorError, setDirectorError] = useState("");
+ const [genreError, setGenreError] = useState("");
+ const [imageError, setImageError] = useState("");
   
+
+ const addMovie = (e) => {
+  e.preventDefault();
+
+  // Perform validation checks
+  let isValid = true;
+
+  if (!title.trim()) {
+    setTitleError("Please enter a movie title");
+    isValid = false;
+  } else {
+    setTitleError("");
+  }
+
+  if (!director.trim()) {
+    setDirectorError("Please enter a movie director");
+    isValid = false;
+  } else {
+    setDirectorError("");
+  }
+
+  if (!genre) {
+    setGenreError("Please select a movie genre");
+    isValid = false;
+  } else {
+    setGenreError("");
+  }
+
+  if (!selectedImage) {
+    setImageError("Please select a movie image");
+    isValid = false;
+  } else {
+    setImageError("");
+  }
+
+  // If all fields are valid, proceed with the form submission
+  if (isValid) {
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('director', director);
-    formData.append('genre', genre);
-    formData.append('image', selectedImage);
-  
+    formData.append("title", title);
+    formData.append("director", director);
+    formData.append("genre", genre);
+    formData.append("image", selectedImage);
+
     Axios.post(`http://localhost:3001/moviecreate`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+        "Content-Type": "multipart/form-data",
+      },
     })
       .then((response) => {
         console.log(response.data.message);
@@ -101,13 +106,14 @@ const MovieRegistrationForm = () => {
         console.log("Error:", error);
         window.confirm("Unable to register movie");
       });
-  };
-  const handleImageChange = (event) => {
-    const files = Array.from(event.target.files);
-    setSelectedImages(files);
-    setSelectedImage(files[0]); // Update the selectedImage state
-    setInputKey(prevKey => prevKey + 1); // Increment the inputKey to force re-render
-  };
+  }
+};
+const handleImageChange = (event) => {
+  const files = Array.from(event.target.files);
+  setSelectedImages(files);
+  setSelectedImage(files[0]); // Update the selectedImage state
+  setInputKey((prevKey) => prevKey + 1); // Increment the inputKey to force re-render
+};
 
   return (
     <>
@@ -121,21 +127,24 @@ const MovieRegistrationForm = () => {
               onSubmit={addMovie}
               className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md"
             >
-              <div className="mb-4">
+             <div className="mb-4">
                 <label
                   className="block text-gray-700 font-bold mb-2"
-                  htmlFor="title"
+                  htmlFor="director"
                 >
-                  Title
+                Title
                 </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="title"
+                  id="director"
                   type="text"
-                  placeholder="Enter movie title"
+                  placeholder="Enter movie director"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
+                 {titleError && (
+                  <p className="text-red-500 text-xs italic">{titleError}</p>
+                )}
               </div>
               <div className="mb-4">
                 <label
@@ -152,6 +161,9 @@ const MovieRegistrationForm = () => {
                   value={director}
                   onChange={(e) => setDirector(e.target.value)}
                 />
+                {directorError && (
+                  <p className="text-red-500 text-xs italic">{directorError}</p>
+                )}
               </div>
               {/* Other form fields */}
               <div className="mb-4">
@@ -174,6 +186,7 @@ const MovieRegistrationForm = () => {
                         {genreOption}
                       </option>
                     ))}
+                 
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg
@@ -185,11 +198,14 @@ const MovieRegistrationForm = () => {
                     </svg>
                   </div>
                 </div>
+                {genreError && (
+                  <p className="text-red-500 text-xs italic">{genreError}</p>
+                )}
               </div>
 
               <div className="mb-4">
       <label className="block text-gray-700 font-bold mb-2" htmlFor="title">
-        Image
+       Attach  Image
       </label>
       <input
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
