@@ -9,7 +9,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-gray-200 h-full w-64 fixed top-20 left-0 z-40 py-8 px-4 transition-transform duration-300 ${
+      className={`bg-[#293A77] h-full w-64 fixed top-20 left-0 z-40 py-8 px-4 transition-transform duration-300 ${
         isSidebarOpen || 'md:translate-x-0 md:-translate-x-full'
       }`}
     >

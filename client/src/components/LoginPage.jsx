@@ -46,7 +46,7 @@ function LoginPage() {
           console.log("the value of data is ", res);
           navigate("/dashboard");
         } else if (res.data.token != null && res.data.role == 0) {
-          navigate("/");
+          navigate("/userdashboard");
         } else {
           console.log("the value of data is ", res.data);
 

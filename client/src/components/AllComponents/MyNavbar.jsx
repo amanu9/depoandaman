@@ -8,8 +8,8 @@ const MyNavbar = () => {
   };
 
   return (
-    <nav className="bg-gray-300 py-1 sticky">
-      <div className="container mx-auto flex items-center justify-between">
+    <nav className="bg-white py-3 sticky top-0 z-1000 shadow">
+      <div className=" px-4 flex items-center justify-between">
         {/* Company Logo and Name */}
         <div className="flex items-center ">
           <img src={logo} alt="Company Logo" className="h-8  w-8  hidden sm:block rounded-full" />
@@ -46,7 +46,7 @@ const MyNavbar = () => {
             />
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg w-48 z-10">
-                <div className="py-2 sticky">
+                <div className="py-2">
                   <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
                     Settings
                   </a>
