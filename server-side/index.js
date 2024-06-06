@@ -76,6 +76,66 @@ app.get("/movielist", (req, res) => {
   });
 });
 
+
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Drama' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Animation ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Family ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Mystery ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Sci-Fi ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Biography ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Sport ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+
+
+
+
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Horror ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+	
+
+
+
+
 ///
 // end point for delete user 
 app.delete("/moviedelete/:id", (req, res) => {
@@ -98,6 +158,8 @@ app.get("/totalmovies", (req, res) => {
   db.query("SELECT COUNT(*) AS total_movies FROM movies", function (err, result) {
     if (err) throw err;
     res.send(result[0]);
+    
+    
   });
 });
 
@@ -117,6 +179,7 @@ app.get("/check_username/:username", (req, res) => {
 
     const exists = result[0].count > 0;
     res.send({ exists: exists });
+    
   });
 });
 

@@ -30,7 +30,7 @@ const Container = () => {
       Axios.delete(`http://localhost:3001/delete/${id}`)
         .then(() => {
           window.alert("Deleted successfully");
-          window.alert("User Data deleted successfully")
+         
           fetchEmployees();
         })
         .catch((error) => {

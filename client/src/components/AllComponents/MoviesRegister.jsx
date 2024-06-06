@@ -12,6 +12,9 @@ const MovieRegistrationForm = () => {
   const [rating, setRating] = useState("");
   const [plotSummary, setPlotSummary] = useState("");
   const [cast, setCast] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [inputKey, setInputKey] = useState(0);
 
   const genres = [
     "Romance",
@@ -69,6 +72,14 @@ const MovieRegistrationForm = () => {
         window.confirm("Unable to register user");
       });
   };
+
+  const handleImageChange = (event) => {
+    const files = Array.from(event.target.files);
+    setSelectedImages(files);
+    // Increment the inputKey state to force re-render of the file input
+    setInputKey(prevKey => prevKey + 1);
+ };
+
   return (
     <>
       <MyNavbar />
@@ -145,6 +156,27 @@ const MovieRegistrationForm = () => {
                     </svg>
                   </div>
                 </div>
+              </div>
+
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 font-bold mb-2"
+                  htmlFor="title"
+                >
+                  Image
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="title"
+                  type="file"
+                  placeholder="select Image"
+                  value={title}
+                  onChange={(e) => {
+                    // Process the selected file
+                    setSelectedImage(e.target.files[0]);
+                    
+                  }}
+                />
               </div>
               {/* Other form fields */}
               <div className="flex items-center justify-between">
