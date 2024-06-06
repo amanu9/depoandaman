@@ -45,27 +45,62 @@ app.post("/create", async (req, res) => {
 
 
 //Movie Regstration
+const multer = require('multer');
+const path = require('path');
 
-app.post("/moviecreate", async (req, res) => {
+// Set up Multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Set the upload directory
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}${path.extname(file.originalname)}`); // Generate a unique filename
+  }
+});
+
+const upload = multer({ storage });
+
+app.post("/moviecreate", upload.single('image'), async (req, res) => {
   const title = req.body.title;
   const director = req.body.director;
   const genre = req.body.genre;
+  const imageUrl = req.file ? req.file.filename : null; // Get the uploaded file name or set to null if no file was uploaded
 
   try {
-    
     db.query(
-      "INSERT INTO movies(title,director,genre) VALUES(?,?,?)",
-      [title, director, genre],
+      "INSERT INTO movies(title, director, genre, image) VALUES(?, ?, ?, ?)",
+      [title, director, genre, imageUrl],
       function (err, result) {
         if (err) throw err;
-        res.send("Movie added");
+        res.send({ message: "Movie added", userData: { title, director, genre, image: imageUrl } });
       }
     );
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error creating Movie");
+    res.status(500).send("Error creating movie");
   }
 });
+
+// app.post("/moviecreate", async (req, res) => {
+//   const title = req.body.title;
+//   const director = req.body.director;
+//   const genre = req.body.genre;
+
+//   try {
+    
+//     db.query(
+//       "INSERT INTO movies(title,director,genre) VALUES(?,?,?)",
+//       [title, director, genre],
+//       function (err, result) {
+//         if (err) throw err;
+//         res.send("Movie added");
+//       }
+//     );
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Error creating Movie");
+//   }
+// });
 
 //End of Movie Registration 
 
