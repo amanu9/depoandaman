@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../image/4.jpg';
+import { FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 const MyNavbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -17,7 +19,7 @@ const MyNavbar = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="w-full max-w-md mx-auto sm:mx-0 sm:ml-3">
+        {/* <div className="w-full max-w-md mx-auto sm:mx-0 sm:ml-3">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg className="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -26,7 +28,23 @@ const MyNavbar = () => {
             </div>
             <input type="text" className="block w-full bg-gray-700 border-none rounded-md py-1 pl-10 pr-4 text-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Search..." />
           </div>
-        </div>
+        </div> */}
+        <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0 ">
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <FaSearch style={{color:'gray', height:'16px'}}/>
+                    </div>
+                    <input
+                      type="text"
+                      className="shadow appearance-none border rounded w-full py-2 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"                      placeholder="Search"
+                      required
+                      aria-label="filterbox"
+                      aria-describedby="basic-addon1"
+                      onChange
+                    />
+                  </div>
+                  
+                </div>
 
         {/* Notification and Avatar */}
         <div className="flex items-center relative">
@@ -50,9 +68,11 @@ const MyNavbar = () => {
                   <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
                     Settings
                   </a>
+                  <Link to="/profileupdate">
                   <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
                     Profile
                   </a>
+                  </Link>
                   <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
                     Logout
                   </a>

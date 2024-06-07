@@ -168,7 +168,48 @@ app.get("/movielist", (req, res) => {
 });
 	
 
+// Update profile endpoint
+app.put('/api/profile/:userId', (req, res) => {
+  const userId = req.params.userId;
+  const { firstname,lastname,username } = req.body;
 
+  // Update the user's profile in the database
+  const query = 'UPDATE userregistration SET firstname = ?, lastname = ?, username = ? WHERE id = 13';
+  db.query(query, [firstname, lastname, username], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to update profile' });
+    } else {
+      res.json({ message: 'Profile updated successfully' });
+    }
+  });
+});
+
+app.get('/api/profileview/:userId', (req, res) => {
+  const userId = req.params.userId;
+
+  // Fetch the user's profile from the database
+  const query = 'SELECT firstname, lastname, username FROM userregistration WHERE id = 13';
+  db.query(query, [userId], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to fetch profile' });
+    } else {
+      if (result.length > 0) {
+        const user = result[0];
+        res.json({
+          firstname: user.firstname,
+          lastname: user.lastname,
+          username: user.username,
+          // other: user.other,
+          // profileImage: user.profileImage
+        });
+      } else {
+        res.status(404).json({ error: 'User not found' });
+      }
+    }
+  });
+});
 
 
 ///
