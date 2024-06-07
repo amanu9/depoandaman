@@ -50,12 +50,12 @@ const MovieRegistrationForm = () => {
     // Perform validation checks
     let isValid = true;
 
-    // if (!title.trim()) {
-    //   setTitleError("Please enter a movie title");
-    //   isValid = false;
-    // } else {
-    //   setTitleError("");
-    // }
+    if (!title.trim()) {
+      setTitleError("Please enter a movie title");
+      isValid = false;
+    } else {
+      setTitleError("");
+    }
 
     if (!director.trim()) {
       setDirectorError("Please enter a movie director");
@@ -162,8 +162,8 @@ const MovieRegistrationForm = () => {
                     id="director"
                     type="text"
                     placeholder="Enter movie director"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={director}
+                    onChange={(e) => setDirector(e.target.value)}
                   />
                 </div>
                 <div className="mb-4 w-[50%]">
@@ -251,8 +251,8 @@ const MovieRegistrationForm = () => {
                     id="director"
                     type="year"
                     placeholder="Enter movie Cast"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={cast}
+                    onChange={(e) => setCast(e.target.value)}
                   />
                 </div>
               </div>
