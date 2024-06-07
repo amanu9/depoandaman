@@ -5,7 +5,9 @@ import { FaRegEdit, FaSearch } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import MyNavbar from "./MyNavbar";
 import Sidebar from "./Sidebar";
+import { Link } from "react-router-dom";
 const MovieList = () => {
+  const [data, setData] = useState([]);
   const [movie, setMovies] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
 
@@ -79,18 +81,18 @@ const MovieList = () => {
                 <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <FaSearch style={{color:'gray', height:'16px'}}/>
+                      <FaSearch style={{ color: 'gray', height: '16px' }} />
                     </div>
                     <input
                       type="text"
-                      className="shadow appearance-none border rounded w-full py-2 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"                      placeholder="Search"
+                      className="shadow appearance-none border rounded w-full py-2 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Search"
                       required
                       aria-label="filterbox"
                       aria-describedby="basic-addon1"
                       onChange
                     />
                   </div>
-                  
+
                 </div>
               </div>
               <div className="overflow-x-auto">
@@ -99,11 +101,11 @@ const MovieList = () => {
                     <tr>
                       <th scope="col">Title</th>
                       <th scope="col">Director</th>
-                      <th scope="col">Year</th>
-                      <th scope="col">Duration</th>
+
                       <th scope="col">Genre</th>
+
                       <th scope="col">Image</th>
-                      <th scope="col">Cast</th>
+
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -112,19 +114,22 @@ const MovieList = () => {
                       <tr key={movies.id}>
                         <td>{movies.title}</td>
                         <td>{movies.director}</td>
-                        <td>{movies.year}</td>
-                        <td>{movies.duration}</td>
                         <td>{movies.genre}</td>
-                        <td>{movies.image}</td>
-                        <td>{movies.cast}</td>
+                        <td className="px-4 py-2 border-b">
+                          {movies.image && (
+                            <img src={`http://localhost:3001/movielist/uploads/${movies.image}`} style={{ maxWidth: '100px',maxHeight:'500px' }} />
+                          )}
+                        </td>
                         <td className="px-4 py-2 border-b">
                           <div className="flex gap-2">
+                            <Link to="/update">
                             <div
                               class="flex items-center justify-center px-1 py-1 font-normal text-white bg-[#0d6efd] rounded-md hover:bg-[#2b76e7] cursor-pointer"
-                              // onClick={() => editMovie(movies.id)}
+                              
                             >
                               <FaRegEdit />
                             </div>
+                            </Link>
 
                             <div
                               class="flex items-center justify-center px-2 py-1 font-normal text-white bg-red-500 rounded-md hover:bg-[#932828] cursor-pointer"
@@ -133,7 +138,6 @@ const MovieList = () => {
                               <MdDelete />
                             </div>
                           </div>
-                          {/* </div> */}
                         </td>
                       </tr>
                     ))}

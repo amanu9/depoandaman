@@ -27,6 +27,7 @@ import CustomerReport from './components/AllComponents/CustomerReport';
 import Setting from './components/AllComponents/User/UserSidebarlinks/Setting';
 import Watchlist from './components/AllComponents/User/UserSidebarlinks/Watchlist';
 import Favorites from './components/AllComponents/User/UserSidebarlinks/Favorites';
+import Update from './components/AllComponents/updatemovie';
 function App() {
   return (
     <Router>
@@ -45,8 +46,8 @@ function App() {
         <Route path='/userdashboard' element={<UserDashboard/>}/>
         <Route path='/usersettings' element={<Setting/>}/>
         <Route path='/watchlists' element={<Watchlist/>}/>
-        <Route path='/favorites' element={<Favorites/>}/>
-
+        <Route path='/favorites' element={<Favorites/>}/>Update
+        <Route path='/update' element={<Update/>}/>
         {/* Movies add */}
         <Route path="/moviecreate" element={<MovieRegistrationForm/>} />
       </Routes>
