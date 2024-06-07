@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import MyNavbar from "./MyNavbar";
 import Sidebar from "./Sidebar";
+import { useNavigate } from "react-router-dom";
 
 const MovieRegistrationForm = () => {
   const [title, setTitle] = useState("");
@@ -12,10 +13,10 @@ const MovieRegistrationForm = () => {
   const [rating, setRating] = useState("");
   const [plotSummary, setPlotSummary] = useState("");
   const [cast, setCast] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [image, setImage] = useState(null);
   const [selectedImages, setSelectedImages] = useState([]);
   const [inputKey, setInputKey] = useState(0);
-
+  const [previewImage, setPreviewImage] = useState(null);
   const genres = [
     "Romance",
     "Action",
@@ -43,6 +44,7 @@ const MovieRegistrationForm = () => {
   const [directorError, setDirectorError] = useState("");
   const [genreError, setGenreError] = useState("");
   const [imageError, setImageError] = useState("");
+const navigate =useNavigate();
 
   const addMovie = (e) => {
     e.preventDefault();
@@ -50,12 +52,12 @@ const MovieRegistrationForm = () => {
     // Perform validation checks
     let isValid = true;
 
-    // if (!title.trim()) {
-    //   setTitleError("Please enter a movie title");
-    //   isValid = false;
-    // } else {
-    //   setTitleError("");
-    // }
+    if (!title.trim()) {
+      setTitleError("Please enter a movie title");
+      isValid = false;
+    } else {
+      setTitleError("");
+    }
 
     if (!director.trim()) {
       setDirectorError("Please enter a movie director");
@@ -71,25 +73,23 @@ const MovieRegistrationForm = () => {
       setGenreError("");
     }
 
-    if (!selectedImage) {
+    if (!image) {
       setImageError("Please select a movie image");
       isValid = false;
     } else {
       setImageError("");
     }
 
-    // If all fields are valid, proceed with the form submission
+    //validation
     if (isValid) {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("director", director);
       formData.append("genre", genre);
-      formData.append("image", selectedImage);
+      formData.append("image", image);
 
       Axios.post(`http://localhost:3001/moviecreate`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+
       })
         .then((response) => {
           console.log(response.data.message);
@@ -99,7 +99,8 @@ const MovieRegistrationForm = () => {
           setTitle("");
           setDirector("");
           setGenre("");
-          setSelectedImage(null);
+          navigate("/movielist")
+
         })
         .catch((error) => {
           console.log("Error:", error);
@@ -108,11 +109,35 @@ const MovieRegistrationForm = () => {
     }
   };
   const handleImageChange = (event) => {
-    const files = Array.from(event.target.files);
-    setSelectedImages(files);
-    setSelectedImage(files[0]); // Update the selectedImage state
-    setInputKey((prevKey) => prevKey + 1); // Increment the inputKey to force re-render
+    setImage(event.target.files[0]);
   };
+
+//image upload
+
+
+
+
+  const durationInput = document.getElementById('movie-duration');
+
+if (durationInput) {
+  durationInput.addEventListener('input', function() {
+    let value = this.value;
+    value = value.replace(/\D/g, ''); // Remove non-numeric characters
+
+    let hours = Math.floor(value / 10000);
+    let minutes = Math.floor((value % 10000) / 100);
+    let seconds = value % 100;
+
+    this.value = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  });
+} else {
+  console.error('Could not find element with ID "movie-duration"');
+}
+
+
+/// image upload 
+
+
 
   return (
     <>
@@ -162,8 +187,8 @@ const MovieRegistrationForm = () => {
                     id="director"
                     type="text"
                     placeholder="Enter movie director"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={director}
+                    onChange={(e) => setDirector(e.target.value)}
                   />
                 </div>
                 <div className="mb-4 w-[50%]">
@@ -179,12 +204,14 @@ const MovieRegistrationForm = () => {
                       id="genre"
                       value={genre}
                       onChange={(e) => setGenre(e.target.value)}
+                     
                     >
                       <option value="">Select a genre</option>
                       {genres.map((genreOption, index) => (
                         <option key={index} value={genreOption}>
                           {genreOption}
                         </option>
+                        
                       ))}
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -212,7 +239,7 @@ const MovieRegistrationForm = () => {
                   </label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="number"
+                    type="date"
                     id="movie-year"
                     name="movie-year"
                     min="1900"
@@ -222,22 +249,18 @@ const MovieRegistrationForm = () => {
                   />
                 </div>
                 <div className="mb-4 w-[50%]">
-                  <label
-                    for="movie-duration"
-                    className="block text-gray-700 font-bold mb-2"
-                  >
-                    Movie Duration (minutes):
-                  </label>
-                  <input
-                    type="number"
-                    id="movie-duration"
-                    name="movie-duration"
-                    min="0"
-                    step="1"
-                    placeholder="Enter the Duration "
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  />
-                </div>
+  <label for="movie-duration" className="block text-gray-700 font-bold mb-2">
+    Movie Duration:
+  </label>
+  <input
+    type="text"
+    id="movie-duration"
+  
+    name="movie-duration"
+    placeholder="Enter the Duration (HH:MM:SS)"
+    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+  />
+</div>
                 <div className="mb-4 w-[50%]">
                   <label
                     className="block text-gray-700 font-bold mb-2"
@@ -251,8 +274,8 @@ const MovieRegistrationForm = () => {
                     id="director"
                     type="year"
                     placeholder="Enter movie Cast"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={cast}
+                    onChange={(e) => setCast(e.target.value)}
                   />
                 </div>
               </div>
@@ -284,18 +307,11 @@ const MovieRegistrationForm = () => {
                       type="file"
                       placeholder="select Image"
                       onChange={handleImageChange}
-                      key={inputKey} // Use the inputKey to force re-render
+                    
                     />
-                 
-                    {selectedImage && (
-                      <img
-                        width="100"
-                        height="100"
-                        src={URL.createObjectURL(selectedImage)}
-                        alt="Selected"
-                        className="ml-4  border-full  bg-white shadow"
-                      />
-                    )}
+                    
+
+
                   </div>
                 </div>
                 {/* Other form fields */}

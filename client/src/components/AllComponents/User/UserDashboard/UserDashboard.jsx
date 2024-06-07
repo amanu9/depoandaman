@@ -12,16 +12,16 @@ const UserDashboard = () => {
 
   const fetchMovieList = () => {
     axios
-      .get("http://localhost:3001/genres")
+      .get("http://localhost:3001/genre")
       .then((response) => {
         setMovies(response.data);
         setImageCards(
           response.data.map((movie) => ({
             // image: "https://via.placeholder.com/300x200",
-            image:movie.image,
+            image: movie.image,
             title: movie.title,
             genre: movie.genre,
-            director:movie.director,
+            director: movie.director,
           }))
         );
       })
@@ -57,7 +57,7 @@ const UserDashboard = () => {
             style={{ "overflow-x": "scroll" }}
           >
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 "
+              className="bg-[#293A77] text-white hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 "
               onClick={() => handleGenreClick("")}
             >
               All
@@ -74,7 +74,7 @@ const UserDashboard = () => {
               .map((genre, index) => (
                 <button
                   key={index}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+                  className="bg-[#293A77] text-white hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
                   onClick={() => handleGenreClick(genre)}
                 >
                   {genre}
@@ -91,22 +91,23 @@ const UserDashboard = () => {
               <div className=" rounded-lg shadow-md p-1 " key={index}>
                 <img
                   src={card.image}
-                  alt={`Movie ${index + 1}`}
+                  // alt={`Movie ${index + 1}`}
                   className="h-[250px] w-full p-2"
                 />
+               
                 <div className="flex">
 
-                <div><h3 className="text-center">{card.title}</h3> </div>
-                <div><h4 className="text-center">{card.genre}</h4> </div>
-                <p className="text-center">{card.director}</p>
+                  <div><h3 className="text-center">{card.title}</h3> </div>
+                  <div><h4 className="text-center">{card.genre}</h4> </div>
+                  <p className="text-center">{card.director}</p>
                 </div>
                 <div className="flex justify-between align-bottom mb-2 px-2 ">
-                    <div className="cursor-pointer"><FaHeart/></div>
-                    <div className="cursor-pointer"><IoAdd/></div>
+                  <div className="cursor-pointer"><FaHeart /></div>
+                  <div className="cursor-pointer"><IoAdd /></div>
                 </div>
-              </div> 
+              </div>
             ))}
-           
+
           </div>
         </div>
       </div>

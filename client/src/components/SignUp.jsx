@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveEmployee,clearFields } from '../api/user_registration_slice';
 import Axios from 'axios';
 import { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const EmployeeForm = () => {
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-  
+  const navigate =useNavigate();
   function addEmployee(event) {
     event.preventDefault(); 
   
@@ -32,11 +33,13 @@ const EmployeeForm = () => {
             console.log(response.data.message);
             console.log(response.data.userData);
             window.confirm("Registration successfully");
+            navigate("/login")
             // Clear the form fields after successful addition
             setfirstname("");
             setlastname("");
             setusername("");
             setpassword("");
+           
           })
           .catch((error) => {
             console.log("Error:", error);

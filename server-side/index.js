@@ -5,10 +5,12 @@ const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
 const jwt = require('jsonwebtoken')
-
+const multer = require('multer');
+const path = require('path');
 // setting connection to sql serve 
 app.use(cors());
 app.use(express.json());
+app.use(express.static('uploads'));
 
 var db = mysql.createConnection({
   host: "localhost",
@@ -45,8 +47,7 @@ app.post("/create", async (req, res) => {
 
 
 //Movie Regstration
-const multer = require('multer');
-const path = require('path');
+
 
 // Set up Multer storage configuration
 const storage = multer.diskStorage({
@@ -54,25 +55,32 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/'); // Set the upload directory
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}${path.extname(file.originalname)}`); // Generate a unique filename
+    cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname)); // Generate a unique filename
   }
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage: storage
+})
 
 app.post("/moviecreate", upload.single('image'), async (req, res) => {
-  const title = req.body.title;
-  const director = req.body.director;
-  const genre = req.body.genre;
-  const imageUrl = req.file ? req.file.filename : null; // Get the uploaded file name or set to null if no file was uploaded
+  console.log('Request Body:', req.body);
+  console.log('Request File:', req.file);
+
+  const { title, director, genre } = req.body; // Get the values from the request body
+
+  // Check if a file was uploaded
+  if (!req.file) {
+    return res.status(400).send("No image file uploaded");
+  }
 
   try {
     db.query(
       "INSERT INTO movies(title, director, genre, image) VALUES(?, ?, ?, ?)",
-      [title, director, genre, imageUrl],
+      [title, director, genre, req.file.filename], // Use the filename instead of the entire image object
       function (err, result) {
         if (err) throw err;
-        res.send({ message: "Movie added", userData: { title, director, genre, image: imageUrl } });
+        res.send("Movie added");
       }
     );
   } catch (err) {
@@ -105,11 +113,14 @@ app.post("/moviecreate", upload.single('image'), async (req, res) => {
 //End of Movie Registration 
 
 app.get("/movielist", (req, res) => {
-  db.query("SELECT * FROM movies WHERE ", function (err, result) {
+  db.query("SELECT * FROM movies ", function (err, result) {
+    console.log(result);
     if (err) throw err;
     res.send(result);
   });
 });
+
+
 
 
 app.get("/movielist", (req, res) => {
@@ -213,6 +224,7 @@ app.get('/api/profileview/:userId', (req, res) => {
 
 
 ///
+
 // end point for delete user 
 app.delete("/moviedelete/:id", (req, res) => {
   const id = req.params.id;
@@ -247,7 +259,7 @@ app.get("/totalusers", (req, res) => {
 });
 
 app.get("/genres", (req, res) => {
-  db.query("SELECT DISTINCT genre FROM movies", function (err, result) {
+  db.query("SELECT  genre FROM movies", function (err, result) {
     if (err) throw err;
     res.send(result);
   });
@@ -264,6 +276,9 @@ app.get("/check_username/:username", (req, res) => {
     
   });
 });
+
+
+
 
 // end point for getting all list of user 
 app.get("/userlist", (req, res) => {
@@ -289,6 +304,8 @@ app.delete("/delete/:id", (req, res) => {
 });
 
 //end of delete 
+
+
 
 
 // end point for login

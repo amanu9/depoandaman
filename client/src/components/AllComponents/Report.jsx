@@ -79,8 +79,8 @@ const Report = () => {
           <div className="h-[100px] rounded-[8px] bg-white border-l-[4px] border-[#4E73DF] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
             {/* <Link to={"/pages/dailyreportdetail"}style={{ textDecoration: 'none' }}> */}
               <div>
-                <h1 className="text-[#89dfa3] text-[18px]  font-bold text-center">Daily Customer </h1>
-                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px]  text-center">200</h1>
+                <h1 className="text-[#89dfa3] text-[18px]  font-bold text-center">New Movies </h1>
+                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px]  text-center">20</h1>
               </div>
 
               {/* <IoHomeOutline /> */}
@@ -91,8 +91,8 @@ const Report = () => {
           <div className="h-[100px] rounded-[8px] bg-white border-l-[4px] border-[#4E73DF] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
             {/* <Link to={"/pages/monthlyreportdetail"}style={{ textDecoration: 'none' }}> */}
               <div>
-                <h2 className="text-[#FFBB28] text-[18px]  font-bold text-center">Monthly Customer</h2>
-                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px] text-center">40</h1>
+                <h2 className="text-[#FFBB28] text-[18px]  font-bold text-center">Old Movies</h2>
+                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px] text-center">200</h1>
 
               </div>
 
@@ -104,8 +104,8 @@ const Report = () => {
           <div className="h-[100px] rounded-[8px] bg-white border-l-[4px] border-[#4E73DF] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
             {/* <Link to={"/pages/yearlyreportdetail"}style={{ textDecoration: 'none' }}> */}
               <div>
-                <h2 className="text-[#FF8042] text-[18px]  font-bold text-center">Yearly Customer</h2>
-                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px] text-center">200</h1>
+                <h2 className="text-[#FF8042] text-[18px]  font-bold text-center">Future Movies</h2>
+                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px] text-center">20</h1>
               </div>
 
               {/* <IoHomeOutline /> */}
@@ -118,7 +118,7 @@ const Report = () => {
           
 
           <div className="h-[400px] rounded-[8px] bg-white border-l-[4px] border-[#cbcbce] p-4">
-            <h1 className="text-[#5a5c69] text-[20px] leading-[24px] font-bold mb-[10px]">Customer Overview</h1>
+            <h1 className="text-[#5a5c69] text-[20px] leading-[24px] font-bold mb-[10px]">User Overview</h1>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 width={500}
@@ -140,7 +140,7 @@ const Report = () => {
             </ResponsiveContainer>
           </div>
           <div className="h-[400px] rounded-[8px] bg-white border-l-[4px] border-[#9d9fa5] p-4">
-            <h1 className="text-[#5a5c69] text-[20px] leading-[24px] font-bold mb-[10px]">SMS Overview</h1>
+            <h1 className="text-[#5a5c69] text-[20px] leading-[24px] font-bold mb-[10px]">Movie Overview</h1>
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie

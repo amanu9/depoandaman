@@ -40,36 +40,36 @@ const Container = () => {
     });
 };
   const imageCards = [
-    {
-      image: 'https://via.placeholder.com/300x200',
-      title: 'Movie 1',
-      genre: 'Romance'
-    },
-    {
-      image: 'https://via.placeholder.com/300x200',
-      title: 'Movie 2',
-      genre: 'Romance'
-    },
-    {
-      image: 'https://via.placeholder.com/300x200',
-      title: 'Movie 3',
-      genre: 'Action'
-    },
-    {
-      image: 'https://via.placeholder.com/300x200',
-      title: 'Movie 4',
-      genre: 'Action'
-    },
-    {
-      image: 'https://via.placeholder.com/300x200',
-      title: 'Movie 5',
-      genre: 'Romance'
-    },
-    {
-      image: 'https://via.placeholder.com/300x200',
-      title: 'Movie 6',
-      genre: 'Action'
-    }
+    // {
+    //   image: 'https://via.placeholder.com/300x200',
+    //   title: 'Movie 1',
+    //   genre: 'Romance'
+    // },
+    // {
+    //   image: 'https://via.placeholder.com/300x200',
+    //   title: 'Movie 2',
+    //   genre: 'Romance'
+    // },
+    // {
+    //   image: 'https://via.placeholder.com/300x200',
+    //   title: 'Movie 3',
+    //   genre: 'Action'
+    // },
+    // {
+    //   image: 'https://via.placeholder.com/300x200',
+    //   title: 'Movie 4',
+    //   genre: 'Action'
+    // },
+    // {
+    //   image: 'https://via.placeholder.com/300x200',
+    //   title: 'Movie 5',
+    //   genre: 'Romance'
+    // },
+    // {
+    //   image: 'https://via.placeholder.com/300x200',
+    //   title: 'Movie 6',
+    //   genre: 'Action'
+    // }
   ];
 
   const [selectedGenre, setSelectedGenre] = useState('');
