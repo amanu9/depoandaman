@@ -121,6 +121,110 @@ app.get("/movielist", (req, res) => {
 });
 
 
+
+
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Drama' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Animation ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Family ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Mystery ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Sci-Fi ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Biography ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Sport ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+
+
+
+
+app.get("/movielist", (req, res) => {
+  db.query("SELECT * FROM movies WHERE genre = 'Horror ' ", function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+	
+
+// Update profile endpoint
+app.put('/api/profile/:userId', (req, res) => {
+  const userId = req.params.userId;
+  const { firstname,lastname,username } = req.body;
+
+  // Update the user's profile in the database
+  const query = 'UPDATE userregistration SET firstname = ?, lastname = ?, username = ? WHERE id = 13';
+  db.query(query, [firstname, lastname, username], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to update profile' });
+    } else {
+      res.json({ message: 'Profile updated successfully' });
+    }
+  });
+});
+
+app.get('/api/profileview/:userId', (req, res) => {
+  const userId = req.params.userId;
+
+  // Fetch the user's profile from the database
+  const query = 'SELECT firstname, lastname, username FROM userregistration WHERE id = 13';
+  db.query(query, [userId], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to fetch profile' });
+    } else {
+      if (result.length > 0) {
+        const user = result[0];
+        res.json({
+          firstname: user.firstname,
+          lastname: user.lastname,
+          username: user.username,
+          // other: user.other,
+          // profileImage: user.profileImage
+        });
+      } else {
+        res.status(404).json({ error: 'User not found' });
+      }
+    }
+  });
+});
+
+
+///
+
 // end point for delete user 
 app.delete("/moviedelete/:id", (req, res) => {
   const id = req.params.id;
