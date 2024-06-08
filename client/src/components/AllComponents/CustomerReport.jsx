@@ -14,7 +14,7 @@ const CustomerReport = () => {
   // const [showSuccess, setShowSuccess] = useState(true);
   // const [report, setReport] = useState(null);
   const [data, setData] = useState([]);
-  const [data1, setData1] = useState([]);
+  
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   const RADIAN = Math.PI / 180;
@@ -48,7 +48,10 @@ const CustomerReport = () => {
         console.log('error', error);
       });
   };
+  const data1 = [
+    { name: 'Total user', value: totalusers },
   
+  ];
 
   return (
     <>
@@ -59,7 +62,7 @@ const CustomerReport = () => {
 
       <div className="pt-[25px] px-[25px] bg-[#F8F9FC]">
         <div className="flex items-center justify-between">
-          <h1 className="text-[#5a5c69] text-[28px]  font-normal cursor-pointer">Dashboard</h1>
+          <h1 className="text-[#293A77] text-[28px]  font-normal cursor-pointer">Dashboard</h1>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-4 gap-[30px] mt-[25px] pb-[15px]">
@@ -67,20 +70,20 @@ const CustomerReport = () => {
           {/* <Link to={"/pages/detailreport"}> */}
 
 
-            <div className="h-[100px] rounded-[8px] bg-white border-l-[4px] border-[#4E73DF] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
+            <div className="h-[100px] rounded-[8px] bg-[#293A77] border-l-[4px] border-[#4E73DF] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
               <div>
-                <h1 className="text-[#B589DF] text-[18px]  font-bold text-center">Total Users</h1>
-                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px]  text-center">{totalusers}</h1>
+                <h3 className="text-white text-[16px]  font-bold text-center">Total Users</h3>
+                <h5 className="text-white   text-[#5a5c69] mt-[5px]  text-center">{totalusers}</h5>
               </div>
               {/* <IoHomeOutline /> */}
             </div>
           {/* </Link> */}
           
-          <div className="h-[100px] rounded-[8px] bg-white border-l-[4px] border-[#4E73DF] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
+          <div className="h-[100px] rounded-[8px] bg-[#293A77] border-l-[4px] border-[#293A77] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
             {/* <Link to={"/pages/dailyreportdetail"}style={{ textDecoration: 'none' }}> */}
               <div>
-                <h1 className="text-[#89dfa3] text-[18px]  font-bold text-center">Daily Customer </h1>
-                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px]  text-center">200</h1>
+                <h3 className="text-white text-[16px]  font-bold text-center">Daily Customer </h3>
+                <h5 className="text-white   text-[#5a5c69] mt-[5px]  text-center">20</h5>
               </div>
 
               {/* <IoHomeOutline /> */}
@@ -88,11 +91,11 @@ const CustomerReport = () => {
 
           </div>
 
-          <div className="h-[100px] rounded-[8px] bg-white border-l-[4px] border-[#4E73DF] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
+          <div className="h-[100px] rounded-[8px] bg-[#293A77] border-l-[4px] border-[#293A77] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
             {/* <Link to={"/pages/monthlyreportdetail"}style={{ textDecoration: 'none' }}> */}
               <div>
-                <h2 className="text-[#FFBB28] text-[18px]  font-bold text-center">Monthly Customer</h2>
-                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px] text-center">40</h1>
+                <h5 className="text-white text-[16px]  font-bold text-center">Monthly Customer</h5>
+                <h5 className="text-white   text-[#5a5c69] mt-[5px] text-center">40</h5>
 
               </div>
 
@@ -101,11 +104,11 @@ const CustomerReport = () => {
 
           </div>
 
-          <div className="h-[100px] rounded-[8px] bg-white border-l-[4px] border-[#4E73DF] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
+          <div className="h-[100px] rounded-[8px] bg-[#293A77] border-l-[4px] border-[#293A77] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-150 ease-out">
             {/* <Link to={"/pages/yearlyreportdetail"}style={{ textDecoration: 'none' }}> */}
               <div>
-                <h2 className="text-[#FF8042] text-[18px]  font-bold text-center">Yearly Customer</h2>
-                <h1 className="text-[20px]  font-bold text-[#5a5c69] mt-[5px] text-center">200</h1>
+                <h2 className="text-white text-[16px]  font-bold text-center">Yearly Customer</h2>
+                <h5 className="text-white  text-[#5a5c69] mt-[5px] text-center">20</h5>
               </div>
 
               {/* <IoHomeOutline /> */}
@@ -118,29 +121,29 @@ const CustomerReport = () => {
           
 
           <div className="h-[400px] rounded-[8px] bg-white border-l-[4px] border-[#cbcbce] p-4">
-            <h1 className="text-[#5a5c69] text-[20px] leading-[24px] font-bold mb-[10px]">Customer Overview</h1>
+            <h1 className="text-[#293A77] text-[20px] leading-[24px] font-bold mb-[10px]">Customer Overview</h1>
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                width={500}
-                height={300}
-                data={data}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="customer" stroke="#8884d8" activeDot={{ r: 8 }} />
-              </LineChart>
-            </ResponsiveContainer>
+  <LineChart
+    width={500}
+    height={300}
+    data={data1}
+    margin={{
+      top: 5,
+      right: 30,
+      left: 20,
+      bottom: 5,
+    }}
+  >
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis dataKey="name" />
+    <YAxis />
+    <Tooltip />
+    <Line type="monotone" dataKey="total_users" stroke="#8884d8" activeDot={{ r: 8 }} />
+  </LineChart>
+</ResponsiveContainer>
           </div>
-          <div className="h-[400px] rounded-[8px] bg-white border-l-[4px] border-[#9d9fa5] p-4">
-            <h1 className="text-[#5a5c69] text-[20px] leading-[24px] font-bold mb-[10px]">SMS Overview</h1>
+          <div className="h-[400px] rounded-[8px] bg-white border-l-[4px] border-[#293A77]p-4">
+            <h1 className="text-[#293A77] text-[20px] leading-[24px] font-bold mb-[10px]">user Favorite Movies Overview</h1>
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
