@@ -59,10 +59,8 @@ function LoginPage() {
   return (
     <div class="flex items-center justify-center h-screen">
       {/* <Toaster position='top-center' reverseOrder={false}></Toaster> */}
-      <div class=" p-4 rounded-lg shadow-lg max-w-sm w-full">
-        <div class="flex justify-center mb-2">
-          <img class="inline-block h-12 w-12 rounded-full ring-2 ring-wheat" />
-        </div>
+      <div class=" px-4 py-1 rounded-lg shadow-lg max-w-sm w-full">
+       
         <h2 class="text-2xl font-semibold text-center mb-4">Login</h2>
         <p class="text-gray-600 text-center mb-6">Welcome to Cine Hub</p>
 
@@ -91,16 +89,16 @@ function LoginPage() {
           <div className="mb-4">
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg  focus:outline-none"
+              className="w-full bg-[#293A77] text-white px-4 py-2 rounded-lg font-bold  focus:outline-none"
               onClick={handleLogin}
             >
               Login
             </button>
           </div>
-          <Link to="/register">
-          <div className="flex justify-between">
+          <Link to="/register" style={{textDecoration:'none'}}>
+          <div className="flex justify-between pt-4">
             <p>Already have an account ?</p> 
-            <button className="btn bg-primary text-light font-bold">SignUp</button>
+            <button className="bg-[#293A77] p-2 rounded text-light font-bold">SignUp</button>
           </div>
           </Link>
         </form>

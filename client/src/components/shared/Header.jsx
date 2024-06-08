@@ -8,7 +8,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-gray-900 text-white py-4">
+    <nav className="bg-white py-3 sticky top-0 z-1000 shadow">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-lg font-bold">CineHub</div>
         <div className="flex items-center">

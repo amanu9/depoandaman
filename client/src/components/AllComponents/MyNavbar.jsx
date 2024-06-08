@@ -10,7 +10,7 @@ const MyNavbar = () => {
   };
 
   return (
-    <nav className="bg-white py-3 sticky top-0 z-1000 shadow">
+    <nav className="bg-white py-3 sticky top-0  shadow">
       <div className=" px-4 flex items-center justify-between">
         {/* Company Logo and Name */}
         <div className="flex items-center ">

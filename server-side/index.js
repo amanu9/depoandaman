@@ -247,7 +247,7 @@ app.get("/totalusers", (req, res) => {
 });
 
 app.get("/genres", (req, res) => {
-  db.query("SELECT DISTINCT genre FROM movies", function (err, result) {
+  db.query("SELECT  genre FROM movies", function (err, result) {
     if (err) throw err;
     res.send(result);
   });

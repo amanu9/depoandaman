@@ -26,6 +26,11 @@ import Setting from "./components/AllComponents/User/UserSidebarlinks/Setting";
 import Watchlist from "./components/AllComponents/User/UserSidebarlinks/Watchlist";
 import Favorites from "./components/AllComponents/User/UserSidebarlinks/Favorites";
 import ProfileUpdate from "./components/AllComponents/User/UserDashboard/ProfileUpade";
+import About from "./components/pages/About";
+import Help from "./components/pages/help";
+import Contact from "./components/pages/contact";
+// import Home from "./components/pages/Home";
+
 function App() {
   return (
     <Router>
@@ -48,6 +53,11 @@ function App() {
           <Route path="/profileupdate" element={<ProfileUpdate />} />
           {/* Movies add */}
           <Route path="/moviecreate" element={<MovieRegistrationForm />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+
+
         </Routes>
       </div>
     </Router>

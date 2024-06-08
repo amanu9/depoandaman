@@ -1,8 +1,12 @@
+import MyNavbar from "../inc/HomeNavbar";
 import Footer from "../inc/footer";
 function Contact() {
     return (
+        <>
+        <MyNavbar/>
+        
         <div>
-            <section className=" py-5 bg-info">
+            <section className=" py-3 mb-2">
                 <div className='container'>
                     <div className='row'>
                         <div className='col-md-4 my-auto'>
@@ -49,7 +53,7 @@ function Contact() {
                                         </textarea>
                                     </div>
                                     <div className="form-group py-2 ">
-                                        <button type="button" className="btn btn-primary shadow float-end w-100">Send Message</button>
+                                        <button type="button" className=" bg-[#293A77] py-2 rounded text-white font-bold shadow float-end w-100">Send Message</button>
 
                                     </div>
                                 </div>
@@ -70,6 +74,7 @@ function Contact() {
             </section>
             <Footer />
         </div>
+        </>
 
     );
 }

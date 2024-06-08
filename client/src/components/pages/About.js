@@ -1,9 +1,14 @@
+import MyNavbar from "../inc/HomeNavbar";
 import Footer from "../inc/footer";
 import Vms from "../inc/mission";
+import Home from "./Home";
 
 function About() {
     return (
-        <div class="py-4 bg-light">
+        <>
+        <MyNavbar/>
+        {/* <Home/> */}
+         <div class="py-7 bg-light">
             <section className="section">
                 <div className='container'>
                     <div className='row'>
@@ -22,6 +27,8 @@ function About() {
             <Footer />
 
         </div>
+        </>
+       
     );
 }
 export default About;
