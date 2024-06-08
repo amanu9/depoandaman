@@ -56,7 +56,7 @@ function Home() {
                 alt="Slider2"
                 style={{
                   width: "700px",
-                  height: "300px",
+                  height: "350px",
                   borderRadius: "20px",
                   boxShadow:
                     "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
@@ -73,7 +73,7 @@ function Home() {
                 alt="Slider3"
                 style={{
                   width: "700px",
-                  height: "300px",
+                  height: "350px",
                   borderRadius: "20px",
 
                   boxShadow:
