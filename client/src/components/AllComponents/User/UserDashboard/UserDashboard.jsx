@@ -4,12 +4,12 @@ import MyNavbar from "../../MyNavbar";
 import Sidebar from "../UserShared/SidebarUser";
 import { FaHeart } from "react-icons/fa6";
 import { IoAdd } from "react-icons/io5";
-import cardimage from '../../../image/action4.jpg'
+import cardimage from "../../../image/action4.jpg";
 const UserDashboard = () => {
   const [movies, setMovies] = useState([]);
   const [imageCards, setImageCards] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("");
-
+  const [clickedCardIndex, setClickedCardIndex] = useState(-1);
   const fetchMovieList = () => {
     axios
       .get("http://localhost:3001/genres")
@@ -17,11 +17,16 @@ const UserDashboard = () => {
         setMovies(response.data);
         setImageCards(
           response.data.map((movie) => ({
+
           image :"https://via.placeholder.com/300x200",
             // image:movie.image,
+
+            // image: "https://via.placeholder.com/300x200",
+            image: movie.image,
+
             title: movie.title,
             genre: movie.genre,
-            director:movie.director,
+            director: movie.director,
           }))
         );
       })
@@ -42,6 +47,24 @@ const UserDashboard = () => {
     ? imageCards.filter((card) => card.genre.includes(selectedGenre))
     : imageCards;
 
+  const clicked = () => {
+    console.log("add button clicked");
+  };
+
+  /// heart clicked
+  const [isHeartClicked, setIsHeartClicked] = useState(false);
+
+  const [heartStates, setHeartStates] = useState(
+    filteredCards.map(() => false)
+  );
+
+  const handleHeartClick = (index) => {
+    setHeartStates((prevStates) => {
+      const newStates = [...prevStates];
+      newStates[index] = !newStates[index];
+      return newStates;
+    });
+  };
   return (
     <>
       <MyNavbar />
@@ -57,7 +80,7 @@ const UserDashboard = () => {
             style={{ "overflow-x": "scroll" }}
           >
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 "
+              className="bg-[#293A77]  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 "
               onClick={() => handleGenreClick("")}
             >
               All
@@ -74,7 +97,7 @@ const UserDashboard = () => {
               .map((genre, index) => (
                 <button
                   key={index}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+                  className="bg-[#293A77]  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
                   onClick={() => handleGenreClick(genre)}
                 >
                   {genre}
@@ -89,24 +112,52 @@ const UserDashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white justify-center align-middle">
             {filteredCards.map((card, index) => (
               <div className=" rounded-lg shadow-md p-1 " key={index}>
-                <img
-                  src={card.image}
-                  alt={`Movie ${index + 1}`}
-                  className="h-[250px] w-full p-2"
-                />
-                <div className="flex">
-
-                <div><h3 className="text-center">{card.title}</h3> </div>
-                <div><h4 className="text-center">{card.genre}</h4> </div>
-                <p className="text-center">{card.director}</p>
+                <div className="flex gap-3">
+                    <div className="text-bold text-14 text-blue-600">
+                      Film Title:{" "}
+                    </div>
+                    
+                    <div>
+                      <h6 className="text-12">{card.title}</h6>
+                    </div>{" "}
+                  </div>
+                <img src={card.image} className="h-[250px] w-full p-2" />
+                <div className="flex flex-col">
+                  <div className="flex gap-3">
+                    {" "}
+                    Director:
+                    <div>
+                      <h6 className=" text-12">{card.director}</h6>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div>
+                      Genre:{" "}
+                    </div>
+                    
+                    <div>
+                      <h6 className="text-12">{card.genre}</h6>
+                    </div>{" "}
+                  </div>
+                  {/* <p className="text-center">{card.director}</p> */}
                 </div>
                 <div className="flex justify-between align-bottom mb-2 px-2 ">
-                    <div className="cursor-pointer"><FaHeart/></div>
-                    <div className="cursor-pointer"><IoAdd/></div>
+                  <div
+                    className={`cursor-pointer ${
+                      heartStates[index] ? "text-red-500" : ""
+                    }`}
+                    onClick={() => handleHeartClick(index)}
+                  >
+                    <span style={{ color: "red" }}>Like/Dislike</span>
+                    <FaHeart />
+                  </div>
+                  <div onClick={clicked} className="cursor-pointer">
+                    <span className="text-[#293A77] ">Add to wish list</span>
+                    <IoAdd />
+                  </div>
                 </div>
-              </div> 
+              </div>
             ))}
-           
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import MyNavbar from "./MyNavbar";
 import Sidebar from "./Sidebar";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const MovieRegistrationForm = () => {
   const [title, setTitle] = useState("");
@@ -43,7 +44,7 @@ const MovieRegistrationForm = () => {
   const [directorError, setDirectorError] = useState("");
   const [genreError, setGenreError] = useState("");
   const [imageError, setImageError] = useState("");
-
+const navigate=useNavigate();
   const addMovie = (e) => {
     e.preventDefault();
 
@@ -100,6 +101,7 @@ const MovieRegistrationForm = () => {
           setDirector("");
           setGenre("");
           setSelectedImage(null);
+          Navigate("/movielist")
         })
         .catch((error) => {
           console.log("Error:", error);

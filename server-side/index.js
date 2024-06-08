@@ -238,6 +238,39 @@ app.get("/totalmovies", (req, res) => {
     
   });
 });
+// end point to get total number of action movires
+app.get("/totaactionmovies", (req, res) => {
+  db.query("SELECT COUNT(*) AS total_action_movies FROM movies WHERE genre ='action'", function (err, result) {
+    if (err) throw err;
+    res.send(result[0]);
+    
+    
+  });
+});
+
+//end point  to get  romance 
+
+app.get("/totalromancemovies", (req, res) => {
+  db.query("SELECT COUNT(*) AS total_romance_movies FROM movies WHERE genre ='romance'", function (err, result) {
+    if (err) throw err;
+    res.send(result[0]);
+    
+    
+  });
+});
+// end point point for total drama movies
+
+app.get("/totaldramaamovies", (req, res) => {
+  db.query("SELECT COUNT(*) AS total_drama_movies FROM movies WHERE genre ='drama'", function (err, result) {
+    if (err) throw err;
+    res.send(result[0]);
+    
+    
+  });
+});
+
+
+
 
 app.get("/totalusers", (req, res) => {
   db.query("SELECT COUNT(*) AS total_users FROM userregistration", function (err, result) {
@@ -247,7 +280,10 @@ app.get("/totalusers", (req, res) => {
 });
 
 app.get("/genres", (req, res) => {
-  db.query("SELECT  genre FROM movies", function (err, result) {
+
+
+  db.query("SELECT  * FROM movies", function (err, result) {
+
     if (err) throw err;
     res.send(result);
   });
@@ -267,7 +303,7 @@ app.get("/check_username/:username", (req, res) => {
 
 // end point for getting all list of user 
 app.get("/userlist", (req, res) => {
-  db.query("SELECT * FROM userregistration", function (err, result) {
+  db.query("SELECT * FROM userregistration  WHERE role='0'", function (err, result) {
     if (err) throw err;
     res.send(result);
   });
