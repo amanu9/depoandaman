@@ -31,8 +31,8 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route index element={<Home />}></Route>
+          {/* <Route path="/home" element={<Home />} /> */}
+          <Route index element={<LoginPage />}></Route>
           <Route path="/report" element={<Report />} />
           <Route path="/MoviesRegster" element={<MovieRegistrationForm />} />
           <Route path="/dashboard" element={<Dashboard />} />
